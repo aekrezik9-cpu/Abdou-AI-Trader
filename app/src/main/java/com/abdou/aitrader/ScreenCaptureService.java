@@ -83,8 +83,12 @@ public class ScreenCaptureService extends Service {
                 }
             }, handler);
 
-            display = projection.createVirtualDisplay("AbdouChartCapture", width, height, density,
-                DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, reader.getSurface(), null, handler);
+            handler.postDelayed(() -> {
+                if (projection != null && reader != null) {
+                    display = projection.createVirtualDisplay("AbdouChartCapture", width, height, density,
+                        DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR, reader.getSurface(), null, handler);
+                }
+            }, 5000);
         } catch (Exception e) {
             Intent done = new Intent(ACTION_DONE);
             done.setPackage(getPackageName());
