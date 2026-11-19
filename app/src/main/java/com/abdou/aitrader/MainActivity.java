@@ -81,7 +81,7 @@ public class MainActivity extends Activity {
                 if (error != null) result.setText("تعذر التقاط الشاشة: " + error);
                 else if (path != null) {
                     selectedChart = BitmapFactory.decodeFile(path);
-                    result.setText(selectedChart == null ? "تعذر قراءة الصورة الملتقطة." : "تم التقاط الشاشة. انتقل إلى الشارت أولاً قبل الضغط على التقاط.");
+                    result.setText(selectedChart == null ? "تعذر قراءة الصورة الملتقطة." : "تم التقاط الشاشة بنجاح. يمكنك الآن تحليل الشارت.");
                 }
             }
         };
@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
                 service.putExtra("result_code", resultCode);
                 service.putExtra("projection_data", data);
                 if (Build.VERSION.SDK_INT >= 26) startForegroundService(service); else startService(service);
-                result.setText("تم منح إذن التقاط الشاشة. انتظر لحظة...");
+                result.setText("تم منح الإذن. انتقل فوراً إلى تطبيق Quotex؛ سيُلتقط ما يظهر بعد 5 ثوانٍ.");
             } else result.setText("ألغيت صلاحية التقاط الشاشة.");
         }
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
